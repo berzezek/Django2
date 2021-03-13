@@ -1,0 +1,20 @@
+{% extends 'h_work_15/base.html' %}
+
+{% block title %}
+  Регистрация нового пользователя
+{% endblock %}
+
+{% block main %}
+  <main class="container mb-5">
+    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto">
+      <h2 class="display-3 fw-bold my-5">Страница регистрации</h2>
+    <form method="post" class="form-register p-3">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button class="btn btn-warning my-5" type="submit">Зарегистрироваться</button>
+    </form>
+  <hr class="mt-4">
+    <a href="{% url 'user' %}"><button class="btn btn-primary ms-2" type="submit">Уже зарегистрированы?</button></a>
+    </div>
+  </main>
+{% endblock %}

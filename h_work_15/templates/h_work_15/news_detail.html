@@ -1,0 +1,27 @@
+{% extends 'h_work_15/base.html' %}
+
+{% block title %}
+  {{ title }}
+{% endblock %}
+
+{% block main %}
+<h2 class="mb-5 ms-5">Новости</h2>
+<form class="p-5">
+  <div class="container">
+    <h3 class="ms-5">{{ object.title }}</h3>
+    <hr>
+    <p>{{ object.text|striptags }}</p>
+    <div class="d-flex">
+      <div>
+        <img src="{{ object.autor.profile.img.url }}" alt="{{ object.autor }}" class="user-images mb-2 shadow-lg">
+      </div>
+      <div class="ms-3">
+        <p>Автор: <a href="{% url 'user-news' object.autor %}">{{ object.autor }}</a></p>
+        <p>Дата: <b>{{ object.date|date:"d E Y в H:i" }}</b></p>
+      </div>
+    </div>
+    <a href="{% url 'news-add' %}" class="btn btn-warning my-5 ms-2 shadow-lg">Добавить статью</a>
+    <a href="{% url 'comment' %}" class="btn btn-primary my-5 ms-2 shadow-lg">Написать комментарий</a>
+  </div>
+</form>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'h_work_15/base.html' %}
+
+{% block title %}
+  {{ title }}
+{% endblock %}
+
+{% block main %}
+<h2 class="my-5 ms-5">Последние комментарии</h2>
+<form class="p-5">
+  <div class="container">
+    {% for post in comment %}
+    <strong class="ms-5">{{ post.post }}</strong>
+    <hr>
+    <p>{{ post.body }}</p>
+    {% endfor %}
+    <a href="{% url 'news' %}" class="btn btn-warning my-5 ms-2 shadow-lg">Вернуться к статьям</a>
+    <a href="{% url 'comment' %}" class="btn btn-primary my-5 ms-2 shadow-lg">Написать комментарий</a>
+  </div>
+</form>
+{% endblock %}

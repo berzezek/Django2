@@ -1,0 +1,20 @@
+{% extends 'h_work_15/base.html' %}
+
+{% block title %}
+  {{ title }}
+{% endblock %}
+
+{% block main %}
+  <main class="mb-5">
+    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto">
+      <h2 class="fw-bold my-5">{{ title }}</h2>
+    <form method="post" class="container form-register p-5 shadow-lg rounded">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button class="btn btn-warning my-5" type="submit">{{ btn_text }}</button>
+    </form>
+  <hr class="mt-4">
+    <!-- <a href="{% url 'user' %}"><button class="btn btn-primary ms-2" type="submit">Уже зарегистрированы?</button></a> -->
+    </div>
+  </main>
+{% endblock %}

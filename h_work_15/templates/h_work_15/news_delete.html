@@ -1,0 +1,20 @@
+{% extends 'h_work_15/base.html' %}
+
+{% block title %}
+  Удаление статьи
+{% endblock %}
+
+{% block main %}
+  <main class="mb-5">
+    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto">
+      <h2 class="fw-bold my-5">Вы точно хотите удалить статью {{ object.title }}</h2>
+    <form method="post" class="container form-register p-5 shadow-lg rounded">
+      {% csrf_token %}
+      <button class="btn btn-danger my-5" type="submit">Да, удалить</button>
+      <a href="{% url 'news-detail' object.id %}" class="btn btn-warning ms-5">Нет, отмена</a>
+    </form>
+  <hr class="mt-4">
+    <!-- <a href="{% url 'user' %}"><button class="btn btn-primary ms-2" type="submit">Уже зарегистрированы?</button></a> -->
+    </div>
+  </main>
+{% endblock %}

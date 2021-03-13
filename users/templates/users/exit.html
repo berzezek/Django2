@@ -1,0 +1,14 @@
+{% extends 'h_work_15/base.html' %}
+
+{% block title %}
+  Вышли с аккаунта
+{% endblock %}
+
+{% block main %}
+  <main class="container mb-5">
+    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto">
+      <h2 class="fw-bold my-5">Вы успешо вышли с аккаунта</h2>
+
+      <a href="{% url 'user' %}"><button type="button" name="button" class="btn btn-primary btn-lg btn-block shadow-lg rounded">Войти заново</button></a>
+    </div>
+{% endblock %}
