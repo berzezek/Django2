@@ -13,7 +13,7 @@ Js2Py==0.70
 packaging==20.9
 Pillow==8.1.0
 pipwin==0.5.1
-psycopg2==2.8.6
+
 pyjsparser==2.7.1
 pyparsing==2.4.7
 
