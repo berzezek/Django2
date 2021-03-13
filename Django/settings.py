@@ -147,7 +147,7 @@ MANAGERS = ADMINS
 
 
 
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
@@ -156,6 +156,10 @@ STATICFILES_DIRS = [
 
 LOGIN_REDIRECT_URL = 'profile'
 LOGIN_URL = 'user'
+
+
+
+
 
 MEDIA_URL = 'pictures/' # 1.2 указывает откуда брать картинки (и сразу создаем в корневой)
 MEDIA_ROOT = os.path.join(BASE_DIR, 'pictures') # Указываем куда сохранять картинки метод join - единение в путь BASE_DIR
