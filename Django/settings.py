@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
+import django_heroku
 from pathlib import Path
 import os
 # from users.apps import UsersConfig
@@ -122,33 +122,20 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
-RECIPIENTS_EMAIL = ['zakritie.nds6@gmail.com']
-DEFAULT_FROM_EMAIL = 'zakritie.nds6@gmail.com'
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-EMAIL_USE_TLS = True
-
-EMAIL_HOST = 'smtp.gmail.com'
-
-EMAIL_HOST_USER = 'zakritie.nds6@gmail.com'
-
-EMAIL_HOST_PASSWORD = 'vbidlpwuvbqfmynx'
 
 EMAIL_PORT = 587
-
-#     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-# else:
-#     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-
-ADMINS = (
-    ('You', 'zakritie.nds6@gmail.com'),
-    )
-MANAGERS = ADMINS
-
-
-
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'zakritie.nds6@gmail.com'
+EMAIL_HOST_PASSWORD = 'vbidlpwuvbqfmynx'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'pictures')
+MEDIA_URL = '/pictures/'
 
 STATICFILES_DIRS = [
     BASE_DIR / "static"
@@ -156,11 +143,3 @@ STATICFILES_DIRS = [
 
 LOGIN_REDIRECT_URL = 'profile'
 LOGIN_URL = 'user'
-
-
-
-
-
-MEDIA_URL = 'pictures/' # 1.2 указывает откуда брать картинки (и сразу создаем в корневой)
-MEDIA_ROOT = os.path.join(BASE_DIR, 'pictures') # Указываем куда сохранять картинки метод join - единение в путь BASE_DIR
-# Далее можно поработать со стилями Далее работаем с profile.html 1.3
