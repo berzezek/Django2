@@ -137,9 +137,5 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'pictures')
 MEDIA_URL = '/pictures/'
 
-STATICFILES_DIRS = [
-    BASE_DIR / "static"
-]
-
 LOGIN_REDIRECT_URL = 'profile'
 LOGIN_URL = 'user'
