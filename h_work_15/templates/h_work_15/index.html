@@ -5,13 +5,13 @@
 {% endblock %}
 
 {% block main %}
-  <main class="container mb-5">
-    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-      <h1 class="display-3 fw-bold mt-5">Простой и удобный сервис</h1>
-      <p class="lead">Делаем работу быстро и качественно</p>
+  <form class="form">
+    <div class="form__div">
+      <h1 class="">Обрезание</h1>
+      <p class="">Ты даже заметишь как это произошло</p>
       <!-- <button class="btn btn-lg btn-primary" href="uslugi">Посмотреть услуги</button> -->
-      <a class="btn btn-lg btn-primary shadow-lg rounded" href="uslugi">Посмотреть услуги</a>
+      <a class="" href="{% url 'news' %}"><button class="form__button">Вернуться на главную</button></a>
     </div>
-  </main>
+  </form>
     <!-- {{ news }} -->
 {% endblock %}

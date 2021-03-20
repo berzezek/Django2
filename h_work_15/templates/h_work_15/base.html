@@ -1,106 +1,60 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="{% static 'h_work_15/style.css' %}">
-  <!-- <link rel="preconnect" href="https://fonts.gstatic.com"> -->
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300;700&display=swap" rel="stylesheet">
-  <!-- <link rel="preconnect" href="https://fonts.gstatic.com"> -->
-  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300;400;700&display=swap" rel="stylesheet">
+<!--  &lt;!&ndash; <link rel="preconnect" href="https://fonts.gstatic.com"> &ndash;&gt;-->
+<!--  <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300;700&display=swap" rel="stylesheet">-->
+<!--  &lt;!&ndash; <link rel="preconnect" href="https://fonts.gstatic.com"> &ndash;&gt;-->
+<!--  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300;400;700&display=swap" rel="stylesheet">-->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
   <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
-  <header class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 border-bottom shadow-lg rounded">
-    <a class="display-4 h2 ms-5 me-md-auto fw-bold" href="{% url 'home' %}">Simply</a>
+  <header class="header">
+    <a class="header__a" href="{% url 'home' %}">Simply</a>
 
-    <nav class="my-2 my-md-0 me-md-3">
+    <nav class="header__nav">
         <!-- <strong class="me-5">Пользователь: {{ user }}</strong> -->
         {% if not user.is_authenticated %}
 
-          <a href="{% url 'reg' %}" class="nav__reg">
-          <button class="btn btn-warning shadow-lg rounded">Регистрация</button>
+          <a href="{% url 'reg' %}" class="nav__a">
+          <button class="nav__button">Регистрация</button>
           </a>
           <a href="{% url 'user' %}" class="nav__reg">
-          <button class="btn btn-info ms-2 shadow-lg rounded">Войти</button>
+          <button class="nav__button">Войти</button>
           </a>
         {% else %}
           <a href="{% url 'profile' %}" class="nav__reg">
-          <button class="btn btn-warning shadow-lg rounded">Профиль <strong>{{ user }}</strong></button>
+          <button class="nav__button">Профиль <strong>{{ user }}</strong></button>
           </a>
           <a href="{% url 'exit' %}" class="nav__reg">
-          <button class="btn btn-info ms-1 shadow-lg rounded">Выйти</button>
+          <button class="nav__button">Выйти</button>
           </a>
           <a href="{% url 'news-add' %}" class="nav__reg">
-          <button class="btn btn-info ms-1 shadow-lg rounded">Добавить статью</button>
+          <button class="nav__button">Добавить статью</button>
           </a>
         {% endif %}
-      <div class="btn-group ms-1 shadow-lg">
-        <a href="{% url 'uslugi' %}" class="btn btn-primary">Услуги</a>
-        <a href="{% url 'news' %}" class="btn btn-primary">Новости</a>
-        <a href="{% url 'about' %}" class="btn btn-primary">Про нас</a>
+      <div class="news">
+        <a href="{% url 'uslugi' %}" class="nav__button">Услуги</a>
+        <a href="{% url 'news' %}" class="nav__button">Новости</a>
+        <a href="{% url 'about' %}" class="nav__button">Про нас</a>
       </div>
     </nav>
   </header>
-  <main class="container">
-    {% if messages %}
-      {% for mes in messages %}
-        {{ mess }}
-        <!-- <div class="alert alert-success">Вы были успешно зарегистрированы!</div> -->
-      {% endfor %}
-    {% endif %}
+    <div class="mess">
+      {% if messages %}
+        {% for mes in messages %}
+              {{ mess }}
+        {% endfor %}
+      {% endif %}
+    </div>
 
     {% block main %}
 
     {% endblock %}
-  <footer class="mt-5 container py-5">
-  <div class="row">
-    <div class="col-12 col-md">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="d-block mb-2" role="img" viewBox="0 0 24 24"><title>Product</title><circle cx="12" cy="12" r="10"></circle><path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94"></path></svg>
-      <small class="d-block mb-3 text-muted">© 2017–2021</small>
-    </div>
-    <div class="col-6 col-md">
-      <h5>Features</h5>
-      <ul class="list-unstyled text-small">
-        <li><a class="link-secondary" href="#">Cool stuff</a></li>
-        <li><a class="link-secondary" href="#">Random feature</a></li>
-        <li><a class="link-secondary" href="#">Team feature</a></li>
-        <li><a class="link-secondary" href="#">Stuff for developers</a></li>
-        <li><a class="link-secondary" href="#">Another one</a></li>
-        <li><a class="link-secondary" href="#">Last time</a></li>
-      </ul>
-    </div>
-    <div class="col-6 col-md">
-      <h5>Resources</h5>
-      <ul class="list-unstyled text-small">
-        <li><a class="link-secondary" href="#">Resource name</a></li>
-        <li><a class="link-secondary" href="#">Resource</a></li>
-        <li><a class="link-secondary" href="#">Another resource</a></li>
-        <li><a class="link-secondary" href="#">Final resource</a></li>
-      </ul>
-    </div>
-    <div class="col-6 col-md">
-      <h5>Resources</h5>
-      <ul class="list-unstyled text-small">
-        <li><a class="link-secondary" href="#">Business</a></li>
-        <li><a class="link-secondary" href="#">Education</a></li>
-        <li><a class="link-secondary" href="#">Government</a></li>
-        <li><a class="link-secondary" href="#">Gaming</a></li>
-      </ul>
-    </div>
-    <div class="col-6 col-md">
-      <h5>About</h5>
-      <ul class="list-unstyled text-small">
-        <li><a class="link-secondary" href="#">Team</a></li>
-        <li><a class="link-secondary" href="#">Locations</a></li>
-        <li><a class="link-secondary" href="#">Privacy</a></li>
-        <li><a class="link-secondary" href="#">Terms</a></li>
-      </ul>
-    </div>
-  </div>
-</footer>
-</body>
+  </body>
 </html>

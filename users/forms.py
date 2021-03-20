@@ -9,6 +9,7 @@ class UserRegisterForm(UserCreationForm):
     email = forms.EmailField(
         label='Введите Email',
         required=True,
+        help_text='Никакого спама',
         widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Введите Email'})
     )
     username = forms.CharField(
@@ -17,74 +18,58 @@ class UserRegisterForm(UserCreationForm):
         help_text='Нельзя вводить символы: @, /, _',
         widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Введите логин'})
     )
-    # some = forms.ModelChoiceField(queryset=User.objects.all())
+
     password1 = forms.CharField(
         label='Введите пароль',
         required=True,
         help_text='Пароль не должен быть маленьким и простым',
         widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Введите пароль'})
     )
-    password2 = forms.CharField(
-        label='Подтвердите пароль',
-        required=True,
-        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Повторно введите пароль'})
-    )
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        del self.fields['password2']
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'password1', 'password2']
+        fields = ['username', 'email', 'password1']
 
 class UserUpdateForm(forms.ModelForm):
-    email = forms.EmailField(
-        label='Введите Email',
-        required=True,
-        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Введите Email'})
+    password1 = forms.CharField(
+        label='Введите новый пароль',
+        required=False,
+        help_text='Придумай что нибудь сложненькое',
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'минимум 8 символов'})
     )
     username = forms.CharField(
-        label='Введите логин',
-        required=True,
+        label='Введите новый логин',
+        required=False,
         help_text='Нельзя вводить символы: @, /, _',
         widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Введите логин'})
     )
 
     class Meta:
         model = User
-        fields = ['username', 'email']
+        fields = ['username', 'password1']
 
-class ProfileImageForm(forms.ModelForm):
-    img = forms.ImageField(
-        label='Загрузить фото',
-        required=False,
-        widget=forms.FileInput
+class ProfileSlugForm(forms.ModelForm):
+    slug = forms.SlugField(
+        label='Придумай коротокое название',
+        required=True,
+        widget=forms.TextInput
     )
 
-    mailcheck = forms.BooleanField(
-        label='Соглашение про отправку почты',
-        required=False,
+    long_link = forms.CharField(
+        label='Вставь длинную ссылку',
+        required=True,
     )
 
-    CHOICE = (
-        ('0', ''),
-        ('1', 'Мужской'),
-        ('2', 'Женский'),
-    )
-
-    u_sex = forms.CharField(
-        label='Выберите пол',
+    title = forms.CharField(
+        label='Придумай коротое описание',
         required=False,
-        max_length=1,
-        widget=forms.Select(attrs={'class': 'form-control'}, choices=CHOICE,),
-
+        max_length=150,
+        widget=forms.TextInput,
         )
 
     class Meta:
         model = Profile
-        fields = ['u_sex', 'img', 'mailcheck']
-
-# class CommentForm(ModelForm):
-#
-#     class Meta:
-#         model = Comment
-#         fields = ('post', 'email', 'body')
-#
-#         context_object_name = 'comment'
+        fields = ['title', 'long_link', 'slug']

@@ -15,7 +15,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 
 
 def home(request):
-    return render(request, 'h_work_15/index.html')
+    return render(request, 'users/user.html')
 
 def uslugi(request):
     return render(request, 'h_work_15/uslugi.html')

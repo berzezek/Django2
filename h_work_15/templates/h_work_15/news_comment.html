@@ -5,16 +5,17 @@
 {% endblock %}
 
 {% block main %}
-<h2 class="my-5 ms-5">Последние комментарии</h2>
-<form class="p-5">
-  <div class="container">
+
+<form class="form">
+  <div class="form__div">
+    <h2 class="">Последние комментарии</h2>
     {% for post in comment %}
-    <strong class="ms-5">{{ post.post }}</strong>
+    <strong class="">{{ post.post }}</strong>
     <hr>
     <p>{{ post.body }}</p>
     {% endfor %}
-    <a href="{% url 'news' %}" class="btn btn-warning my-5 ms-2 shadow-lg">Вернуться к статьям</a>
-    <a href="{% url 'comment' %}" class="btn btn-primary my-5 ms-2 shadow-lg">Написать комментарий</a>
+    <a href="{% url 'news' %}" class="form__button">Вернуться к статьям</a>
+    <a href="{% url 'comment' %}" class="form__button">Написать комментарий</a>
   </div>
 </form>
 {% endblock %}

@@ -5,48 +5,40 @@
 {% endblock %}
 
 {% block main %}
-<h2>Все статьи автора <em>{{ view.kwargs.username }}</em></h2>
-<h4>Количесво статей: {{ page_obj.paginator.count }}</h4>
 
-  <form class="p-5 rounded">
-    <div class="container">
+  <form class="form">
+    <div class="form__div">
+      <h2>Все статьи автора <em>{{ view.kwargs.username }}</em></h2>
+      <h4>Количесво статей: {{ page_obj.paginator.count }}</h4>
       {% for post in news %}
-        <h3 class="ms-5">{{ post.title }}</h3>
+        <h3 class="">{{ post.title }}</h3>
         <hr>
         <p>{{ post.text|striptags|truncatechars:200 }}</p>
-        <div class="d-flex">
-          <div>
-            <img src="{{ post.autor.profile.img.url }}" alt="{{ post.autor }}" class="user-images mb-2 shadow-lg">
-          </div>
-          <div class="ms-3">
-
+          <div class="">
               <p>Автор: <a href="{% url 'user-news' post.autor %}">{{ post.autor }}</a></p>
               <p>Дата: <b>{{ post.date|date:"d E Y в H:i" }}</b></p>
-
           </div>
-        </div>
-        <hr class="mb-3">
-        <a href="{% url 'news-detail' post.id %}" class="btn btn-warning mt-1 mb-5 ms-2 shadow-lg">Читать далее</a>
+        <hr class="">
+        <a href="{% url 'news-detail' post.id %}" class="form__button">Читать далее</a>
       {% endfor %}
         <br>
         {% if page_obj.has_previous %}
-        <a href="?page=1" class="btn btn-info mt-1 mb-5 ms-2 shadow-lg">&laquo; Первая</a>
-        <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-info mt-1 mb-5 ms-2 shadow-lg">Предыдущая</a>
+        <a href="?page=1" class="form__button">&laquo; Первая</a>
+        <a href="?page={{ page_obj.previous_page_number }}" class="form__button">Предыдущая</a>
         {% endif %}
         {% for num in page_obj.paginator.page_range %}
         {% if num == page_obj.number %}
-        <a class="btn btn-danger mt-1 mb-5 ms-2">{{ num }}</a>
+        <a class="form__button">{{ num }}</a>
         {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-        <a href="?page={{ num }}" class="btn btn-outline-info mt-1 mb-5 ms-2 shadow-lg">{{ num }}</a>
+        <a href="?page={{ num }}" class="form__button">{{ num }}</a>
         {% endif %}
         {% endfor %}
         {% if page_obj.has_next %}
-        <a href="?page={{ page_obj.next_page_number }}" class="btn btn-info mt-1 mb-5 ms-2 shadow-lg">Следущая</a>
-        <a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-info mt-1 mb-5 ms-2 shadow-lg">Конец &raquo;</a>
+        <a href="?page={{ page_obj.next_page_number }}" class="form__button">Следущая</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}" class="form__button">Конец &raquo;</a>
         {% endif %}
     </div>
-
-    <a href="{% url 'news-add' %}" class="btn btn-warning mt-1 mb-5 ms-2 shadow-lg">Добавить статью</a>
+    <a href="{% url 'news-add' %}" class="form__button">Добавить статью</a>
     <br>
 </form>
 {% endblock %}
